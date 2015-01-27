@@ -110,54 +110,7 @@ public class Constants {
     }
     
     public static enum Privileges{
-	//Item service Privileges 
-	GET_ITEMS("GET_ITEMS", "Privilage for retrieving all Items for a given business", true),
-	GET_ITEMS_COUNT("GET_ITEMS_COUNT", "Privilage for retrieving Items count for a given business", true),
-	GET_ITEM("GET_ITEM", "Privilage for retrieving a unique Item for a given business using the items Id", false),
-	POST_ITEM("POST_ITEM", "Privilage for creating an Item for a given business", true),
-	PUT_ITEM("PUT_ITEM", "Privilage for updating a unique Item for a given business", true),
-	DELETE_ITEM("DELETE_ITEM", "Privilage for deleting an Item for a given business", true),	
-	//Product service Privileges
-	GET_PRODUCTS("GET_PRODUCTS", "Privilage for retrieving all Products for a given business", true),
-	GET_PRODUCTS_COUNT("GET_PRODUCTS_COUNT", "Privilage for retrieving Products count for a given business", true),
-	GET_PRODUCT("GET_PRODUCT", "Privilage for retrieving a unique Product for a given business", false),
-	POST_PRODUCT("POST_PRODUCT", "Privilage for creating a Product for a given business", true),
-	PUT_PRODUCT("PUT_PRODUCT", "Privilage for updating a unique Product for a given business", true),
-	DELETE_PRODUCT("DELETE_PRODUCT", "Privilage for deleting a Product for a given business", true),
-	//Collection service Privileges
-	GET_COLLECTIONS("GET_COLLECTIONS", "Privilage for retrieving all Collections for a given business", true),
-	GET_ITEMS_COLLECTION_COUNT("GET_ITEMS_COLLECTION_COUNT", "Privilage for retrieving Collections count for a given business", true),
-	GET_COLLECTION("GET_COLLECTION", "Privilage for retrieving a unique Collection for a given business", false),
-	GET_COLLECTION_ITEMS("GET_COLLECTION_ITEMS", "Privilage for viewing a unique Collection's Items for a given business", false),
-	POST_COLLECTION("POST_COLLECTION", "Privilage for creating a Collection for a given business", true),
-	PUT_COLLECTION("PUT_COLLECTION", "Privilage for updating a Collection for a given business", true),
-	PUT_COLLECTION_ITEMS("PUT_COLLECTION_ITEMS", "Privilage for adding Items to a Collection for a given business", true),
-	DELETE_COLLECTION("DELETE_COLLECTION", "Privilage for deleting a Collection for a given business", true),
-	DELETE_COLLECTION_ITEM("DELETE_COLLECTION_ITEM", "Privilage for removing a unique Item from a Collection for a given business", true),
-	DELETE_COLLECTION_ITEMS("DELETE_COLLECTION_ITEMS", "Privilage for removing multiple Item from a Collection for a given business", true),
-	//Location service Privileges
-	GET_LOCATION("GET_LOCATION", "Privilage for retrieving all Location for a given business", false),
-	POST_LOCATION("POST_LOCATION", "Privilage for creating a Location for a given business", false),
-	PUT_LOCATION("PUT_LOCATION", "Privilage for updating a Location for a given business", false),
-	DELETE_LOCATION("DELETE_LOCATION", "Privilage for deleting a Location for a given business", false),
-	//Property service Privileges
-	GET_PROPERTY("GET_PROPERTY", "Privilage for retrieving a unique Property using the Property's key for a given business", false),
-	GET_PROPERTIES("GET_PROPERTIES", "Privilage for retrieving all Properties for a given business", false),
-	POST_PROPERTY("POST_PROPERTY", "Privilage for creating a Property for a given business", false),
-	PUT_PROPERTY("PUT_PROPERTY", "Privilage for updating a Property for a given business", false),
-	DELETE_PROPERTY("DELETE_PROPERTY", "Privilage for deleting a Property for a given business", false),	
-	//Activity service Privileges
-	GET_ACTIVITY("GET_ACTIVITY", "Privilage for retrieving a unique Activity for a given business", false),
-	GET_ACTIVITES("GET_ACTIVITES", "Privilage for retrieving Activities for a given business", true),
-	GET_ACTIVITY_TYPE("GET_ACTIVITY_TYPE", "Privilage for retrieving Activity Type for a given business", false),
-	POST_ACTIVITY("POST_ACTIVITY", "Privilage for creating an Activity for a given business", true),
-	PUT_ACTIVITY("PUT_ACTIVITY", "Privilage for updating an Activity for a given business", true),	
-	DELETE_ACTIVITY("DELETE_ACTIVITY", "Privilage for deleting an Activity for a given business", true),	
-	POST_ACTIVITY_TYPE("POST_ACTIVITY_TYPE", "Privilage for creating an ActivityType for a given business", true),	
-	//Business service Privileges	
-	GET_BUSINESS("GET_BUSINESS", "Privilage for retrieving a unique business", false),	
-	POST_BUSINESS("POST_BUSINESS", "Privilage for creating a business", false),	
-	PUT_BUSINESS("PUT_BUSINESS", "Privilage for updating a business", false),
+
 	//User service privileges
 	POST_USER("POST_USER", "Privilage for creating a User for a given business", true),
 	

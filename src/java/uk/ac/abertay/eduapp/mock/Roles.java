@@ -12,4 +12,14 @@ public class Roles {
 		return null;
 	}
 
+	public Roles getBusiness() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getCode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

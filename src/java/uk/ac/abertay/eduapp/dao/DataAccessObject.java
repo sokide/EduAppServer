@@ -20,8 +20,6 @@ import uk.ac.abertay.eduapp.mock.Roles;
 import uk.ac.abertay.eduapp.mock.ServiceLocator;
 import uk.ac.abertay.eduapp.mock.Users;
 
-import com.sun.mail.imap.Rights;
-
 
 /**
  * @author Sam Okide
@@ -70,8 +68,8 @@ public class DataAccessObject {
 	return (Users)sService.getUniqueRecordByHQL("SELECT u from Users u where u.email='" + email +"' and u.password='" + MD5Util.getMD5(password)+"' and u.enabled="+Boolean.TRUE); 
     }
     
-    public static Rights getRightsByRoleAndPrivilege(Roles role, String privilege){
-	return (Rights)sService.getUniqueRecordByHQL("SELECT r from Rights r where r.roles.id=" + role.getId() + " and r.privilege.code='"+privilege+"'");  
+	public static uk.ac.abertay.eduapp.mock.Rights getRightsByRoleAndPrivilege(Roles role, String privilege) {
+		return (uk.ac.abertay.eduapp.mock.Rights) sService.getUniqueRecordByHQL("SELECT r from Rights r where r.roles.id=" + role.getId() + " and r.privilege.code='" + privilege + "'");
     }
     public static Users getBusinessAccountUserByBusinessId(Long businessId){
 	return (Users)sService.getUniqueRecordByHQL("SELECT u from Users u where u.business.id=" + businessId +" and u.businessAccount="+Boolean.TRUE); 
