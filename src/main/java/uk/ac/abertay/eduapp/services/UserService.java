@@ -1,7 +1,8 @@
 /**
  * 
  */
-package uk.ac.abertay.eduapp.service;
+package uk.ac.abertay.eduapp.services;
+
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -28,7 +29,6 @@ import uk.ac.abertay.eduapp.common.Constants.Gender;
 import uk.ac.abertay.eduapp.common.MD5Util;
 import uk.ac.abertay.eduapp.common.Util;
 import uk.ac.abertay.eduapp.dao.DataAccessObject;
-import uk.ac.abertay.eduapp.mock.Address;
 import uk.ac.abertay.eduapp.mock.Roles;
 import uk.ac.abertay.eduapp.mock.Users;
 import uk.ac.abertay.eduapp.pojo.ApplicationStatePojo;
@@ -66,16 +66,16 @@ public class UserService {
 		}
 
 		Users user = new Users();
-		Address address = new Address();
-		if (jsonUser.getAddress() != null) {
-			address.setCountry(jsonUser.getAddress().getCountry());
-			address.setCounty(jsonUser.getAddress().getCounty());
-			address.setHouseNumber(jsonUser.getAddress().getNumber());
-			address.setPostCode(jsonUser.getAddress().getPostcode());
-			address.setStreet(jsonUser.getAddress().getStreet());
-			address = (Address) DataAccessObject.createNewRecord(address);
-			user.setAddress(address);
-		}
+		// Address address = new Address();
+		// if (jsonUser.getAddress() != null) {
+		// address.setCountry(jsonUser.getAddress().getCountry());
+		// address.setCounty(jsonUser.getAddress().getCounty());
+		// address.setHouseNumber(jsonUser.getAddress().getNumber());
+		// address.setPostCode(jsonUser.getAddress().getPostcode());
+		// address.setStreet(jsonUser.getAddress().getStreet());
+		// address = (Address) DataAccessObject.createNewRecord(address);
+		// user.setAddress(address);
+		// }
 		user.setRoles(userRole);
 		user.setEmail(jsonUser.getEmail());
 		user.setFirstName(jsonUser.getFirstName());

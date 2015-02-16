@@ -37,8 +37,9 @@ public class ApplicationSecurityController {
         Application application = DataAccessObject.getApplicationByAuthorizationKey(applicationKey);
         if(application != null){
             currentState.setCurrentApplication(application);
-            if(DataAccessObject.getRightsByRoleAndPrivilege(application.getRoles(), privilage.getCode()) != null)
-                authorized = Boolean.valueOf(true);
+			// if(DataAccessObject.getRightsByRoleAndPrivilege(application.getRoles(),
+			// privilage.getCode()) != null)
+			// authorized = Boolean.valueOf(true);
         } else{
             ExceptionPojo ePojo = new ExceptionPojo(Constants.HTTP_CODE.UNAUTHORIZED, new String[] {
                 "Malicious or outdated application."
@@ -51,8 +52,9 @@ public class ApplicationSecurityController {
         if(user != null)
         {
             currentState.setCurrentUser(user);
-            if(DataAccessObject.getRightsByRoleAndPrivilege(user.getRoles(), privilage.getCode()) != null)
-                authorized = Boolean.valueOf(true);
+			// if(DataAccessObject.getRightsByRoleAndPrivilege(user.getRoles(),
+			// privilage.getCode()) != null)
+			// authorized = Boolean.valueOf(true);
         }
 
         if(!authorized.booleanValue())

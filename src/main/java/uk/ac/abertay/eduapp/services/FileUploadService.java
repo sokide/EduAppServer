@@ -1,7 +1,7 @@
 /**
  * 
  */
-package uk.ac.abertay.eduapp.service;
+package uk.ac.abertay.eduapp.services;
 
 import java.io.File;
 import java.io.FileOutputStream;

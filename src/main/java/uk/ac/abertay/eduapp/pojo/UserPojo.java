@@ -23,7 +23,8 @@ public class UserPojo {
     private String userRole;
     private HashMap<String, String> customFields;
     private BirthdayPojo birthday;
-    private AddressPojo address;
+
+	// private AddressPojo address;
 
     public UserPojo(){
 	
@@ -42,7 +43,7 @@ public class UserPojo {
 	 this.birthday = birthday;
 	 if( user.getAddress() != null){
 	 AddressPojo address = new AddressPojo(user.getAddress());
-	 this.address = address;
+			// this.address = address;
 	 }
 	 }
 
@@ -132,14 +133,14 @@ public class UserPojo {
     public void setBirthday(BirthdayPojo birthday) {
 	this.birthday = birthday;
     }
-
-    public AddressPojo getAddress() {
-	return address;
-    }
-
-    public void setAddress(AddressPojo address) {
-	this.address = address;
-    }
+	//
+	// public AddressPojo getAddress() {
+	// return address;
+	// }
+	//
+	// public void setAddress(AddressPojo address) {
+	// this.address = address;
+	// }
 
 
 

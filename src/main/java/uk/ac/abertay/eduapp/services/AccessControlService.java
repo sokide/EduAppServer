@@ -1,7 +1,7 @@
 /**
  * 
  */
-package uk.ac.abertay.eduapp.service;
+package uk.ac.abertay.eduapp.services;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;

@@ -3,7 +3,7 @@
  */
 package uk.ac.abertay.eduapp.pojo;
 
-import uk.ac.abertay.eduapp.mock.Address;
+import javax.mail.Address;
 
 /**
  * @author Sam Okide
@@ -21,14 +21,14 @@ public class AddressPojo {
 
     
     public AddressPojo(Address address) {
-		this.country = (address.getCountry());
-		this.county = (address.getCounty());
-		this.number = (address.getHouseNumber());
-		this.postcode = (address.getPostCode());
-		this.street = (address.getStreet());
+		// this.country = (address.getCountry());
+		// this.county = (address.getCounty());
+		// this.number = (address.getHouseNumber());
+		// this.postcode = (address.getPostCode());
+		// this.street = (address.getStreet());
     }
     
-	public String getNumber() {
+    public String getNumber() {
 	return number;
     }
 

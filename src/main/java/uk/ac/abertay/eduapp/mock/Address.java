@@ -27,29 +27,4 @@ public class Address {
 
 	}
 
-	public String getCountry() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getCounty() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getHouseNumber() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getPostCode() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getStreet() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

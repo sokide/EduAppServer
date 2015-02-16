@@ -2,6 +2,7 @@ package uk.ac.abertay.eduapp.mock;
 
 import java.util.Date;
 
+import javax.mail.Address;
 
 public class Users {
 	private Long id;
@@ -35,6 +36,11 @@ public class Users {
 	}
 
 	public void setRoles(Roles userRole) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void setAddress(Address address) {
 		// TODO Auto-generated method stub
 
 	}
