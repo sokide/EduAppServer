@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import uk.ac.abertay.eduapp.FtpClient;
 import uk.ac.abertay.eduapp.common.Constants.LogOutStatus;
 import uk.ac.abertay.eduapp.dao.DataAccessObject;
 import uk.ac.abertay.eduapp.mock.Application;
@@ -73,23 +74,23 @@ public class ApplicationSecurityController {
     @SuppressWarnings("unchecked")
     public static AccessPojo AuthenticateUser(String email, String password)
     {
-        Users user = null;
+        boolean authenticated = false;
         try{
-            user = DataAccessObject.getUserByEmailAndPassword(email, password);
+        	authenticated = FtpClient.authenticateUser(email, password);
         }catch(Exception e){
             e.printStackTrace();
         }
-        if(user == null)
+        if(!authenticated)
             return null;
         AccessPojo acPojo = new AccessPojo();
-        acPojo.setEmail(user.getEmail());
+        acPojo.setEmail(email);
         String apiKey = generateApiKey(email, password);
         acPojo.setUserApiKey(apiKey);
         acPojo.setStatusCode(Constants.HTTP_CODE.OK.getCode());
-		user.setAuthorizationKey(apiKey);
+//		user.setAuthorizationKey(apiKey);
 
 
-	DataAccessObject.updateRecord(user);
+//	DataAccessObject.updateRecord(user);
 	return acPojo;
     }
 

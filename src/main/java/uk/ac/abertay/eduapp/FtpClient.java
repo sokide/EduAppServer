@@ -1,49 +1,104 @@
 package uk.ac.abertay.eduapp;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.apache.ftpserver.ftplet.Authority;
-import org.apache.ftpserver.ftplet.FtpException;
-import org.apache.ftpserver.ftplet.UserManager;
-import org.apache.ftpserver.usermanager.PropertiesUserManagerFactory;
-import org.apache.ftpserver.usermanager.SaltedPasswordEncryptor;
-import org.apache.ftpserver.usermanager.impl.BaseUser;
-import org.apache.ftpserver.usermanager.impl.WritePermission;
+import java.io.IOException;
+import java.net.SocketException;
+
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 
 public class FtpClient {
-	public static void main(String[] args) {
+	
+	public static boolean authenticateUser(String username, String password) {
+		FTPClient ftpClient = getFtpClient();
+		boolean loggedIn = false;
+
 		try {
-			createUser();
-		} catch (FtpException e) {
+			loggedIn = ftpClient.login(username, password);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// listDirectory(ftpClient, "", "", 1);
+		disconectFTP(ftpClient);
+
+		return loggedIn;
+	}
+	
+	private static FTPClient getFtpClient(){
+		FTPClient ftpClient = new FTPClient();
+		try {
+			ftpClient.connect("localhost");
+		} catch (SocketException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return ftpClient;
+	}	
+	
+	public static void disconectFTP(FTPClient ftpClient) {
+		try {
+			if (ftpClient.isConnected()) {
+				ftpClient.logout();
+				ftpClient.disconnect();
+			}
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	public static String getDir(String username, String password, String dir){
+		String response = "";
+		if(authenticateUser(username, password)){
+			StringBuilder dirBuilder = new StringBuilder();
+			FTPClient ftpClient = getFtpClient();
+			try {
+				ftpClient.login(username, password);
+				for(FTPFile ftpFile : ftpClient.listFiles()){
+					dirBuilder.append("[").append(ftpFile).append("]");
+				}
+				disconectFTP(ftpClient);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			response = dirBuilder.toString();
+		}else{
+			response = "User authentication failed!";
+		}
+		return response;
+	}
 
-	public static void createUser() throws FtpException {
-		String username = "ftp";
-		String password = "ftp";
-		String ftproot = "data";
+	static void listDirectory(FTPClient ftpClient, String parentDir,
+	        String currentDir, int level) throws IOException {
+	    String dirToList = parentDir;
+	    if (!currentDir.equals("")) {
+	        dirToList += "/" + currentDir;
+	    }
+	    FTPFile[] subFiles = ftpClient.listFiles(dirToList);
+	    if (subFiles != null && subFiles.length > 0) {
+	        for (FTPFile aFile : subFiles) {
+	            String currentFileName = aFile.getName();
+	            if (currentFileName.equals(".")
+	                    || currentFileName.equals("..")) {
+	                // skip parent directory and directory itself
+	                continue;
+	            }
+	            for (int i = 0; i < level; i++) {
+	                System.out.print("\t");
+	            }
+	            if (aFile.isDirectory()) {
+	                System.out.println("[" + currentFileName + "]");
+	                listDirectory(ftpClient, dirToList, currentFileName, level + 1);
+	            } else {
+	                System.out.println(currentFileName);
+	            }
+	        }
+	    }
+	}
 
-		// prepares the user manager
-		PropertiesUserManagerFactory userManagerFactory = new PropertiesUserManagerFactory();
-		File propFile = new File("myusers.properties");
-		System.out.println("Directory ------------> " + propFile.getAbsolutePath());
-		userManagerFactory.setFile(propFile);
-		userManagerFactory.setPasswordEncryptor(new SaltedPasswordEncryptor());
-		UserManager um = userManagerFactory.createUserManager();
-		// set up my user
-		BaseUser user = new BaseUser();
-		user.setName(username);
-		user.setPassword(password);
-		user.setHomeDirectory(ftproot);
-		List<Authority> authorities = new ArrayList<Authority>();
-		authorities.add(new WritePermission());
-		user.setAuthorities(authorities);
-
-		um.save(user);
-		// adds the user
-		// FtpServerThread.setUserManager(um);
+	
+	public static void main (String [] args){
+		authenticateUser("admin","admin");
 	}
 }

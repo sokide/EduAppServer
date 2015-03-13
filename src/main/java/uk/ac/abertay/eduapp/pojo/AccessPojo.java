@@ -10,10 +10,8 @@ package uk.ac.abertay.eduapp.pojo;
 
 public class AccessPojo {
     private int statusCode;
-    private String userFullName;
     private String userApiKey;
     private String email;
-    private String[] businessApiKeys;
     private String accountType;
     
     public AccessPojo(){
@@ -26,14 +24,6 @@ public class AccessPojo {
 
     public void setStatusCode(int statusCode) {
 	this.statusCode = statusCode;
-    }
-    
-    public String getUserFullName() {
-	return userFullName;
-    }
-    
-    public void setUserFullName(String userFullName) {
-	this.userFullName = userFullName;
     }
     
     public String getUserApiKey() {
@@ -50,14 +40,6 @@ public class AccessPojo {
 
     public void setEmail(String email) {
 	this.email = email;
-    }
-
-    public String[] getBusinessApiKeys() {
-	return businessApiKeys;
-    }
-
-    public void setBusinessApiKeys(String[] businessApiKeys) {
-	this.businessApiKeys = businessApiKeys;
     }
 
     public String getAccountType() {
