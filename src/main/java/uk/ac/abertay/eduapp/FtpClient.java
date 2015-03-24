@@ -3,9 +3,15 @@ package uk.ac.abertay.eduapp;
 
 import java.io.IOException;
 import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPConnectionClosedException;
 import org.apache.commons.net.ftp.FTPFile;
+
+import uk.ac.abertay.eduapp.pojo.FTPFilePojo;
 
 public class FtpClient {
 	
@@ -47,28 +53,60 @@ public class FtpClient {
 		}
 	}
 	
-	public static String getDir(String username, String password, String dir){
-		String response = "";
+	public static Collection<FTPFilePojo> getDir(String username, String password, String dir, String imageDir){
+		List<FTPFilePojo> files = null; 
 		if(authenticateUser(username, password)){
-			StringBuilder dirBuilder = new StringBuilder();
+			
 			FTPClient ftpClient = getFtpClient();
 			try {
 				ftpClient.login(username, password);
-				for(FTPFile ftpFile : ftpClient.listFiles()){
-					dirBuilder.append("[").append(ftpFile).append("]");
+				files = new ArrayList<FTPFilePojo>();
+//				String 
+				if(dir != null && !dir.isEmpty()){
+					String parentDir = getPreviousDir(dir);
+					FTPFilePojo parentFile = new FTPFilePojo();
+					
+					parentFile.setImageUrl("<img src=\"" +imageDir + "back-icon.png\">");
+					
+					if(parentDir == null || parentDir.isEmpty()){
+						parentFile.setCurrentDir("");
+						parentFile.setName("Back to Home Dir");
+					}else{
+						parentFile.setCurrentDir(parentDir);
+						parentFile.setName("Back to " + parentDir);
+					}
+					
+					files.add(parentFile);
+				}
+				
+				FTPFile []ftpFiles = (dir != null && !dir.isEmpty()) ? ftpClient.listFiles(dir) : ftpClient.listFiles();
+				for(FTPFile ftpFile : ftpFiles){
+					FTPFilePojo file = new FTPFilePojo(ftpFile,  dir, imageDir);
+					files.add(file);
 				}
 				disconectFTP(ftpClient);
+			} catch (FTPConnectionClosedException e) {
+//				e.printStackTrace();
+				getDir( username,  password,  dir,  imageDir);
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
-			
-			response = dirBuilder.toString();
+			}			
 		}else{
-			response = "User authentication failed!";
+//			response = "User authentication failed!";
+			System.out.println("User authentication failed!!");
 		}
-		return response;
+		return files;
 	}
 
+    
+    public static String getPreviousDir(String currentDir){
+    	String previousDir = "";
+    	if(!currentDir.isEmpty() && currentDir.contains("/")){
+    		previousDir = currentDir.substring(0, currentDir.lastIndexOf('/'));
+    	}    	 
+    	return previousDir;
+    }
+	
 	static void listDirectory(FTPClient ftpClient, String parentDir,
 	        String currentDir, int level) throws IOException {
 	    String dirToList = parentDir;
@@ -99,6 +137,13 @@ public class FtpClient {
 
 	
 	public static void main (String [] args){
-		authenticateUser("admin","admin");
+		Collection<FTPFilePojo> files = getDir("admin","admin", "ftp_users/bingo", "");
+		for(FTPFilePojo file  : files){
+			
+			System.out.println("-----------> "+file.getName());
+		}
+		  
+	    	System.out.println("previous dir --->" + getPreviousDir("user_dir/"));
+	    
 	}
 }

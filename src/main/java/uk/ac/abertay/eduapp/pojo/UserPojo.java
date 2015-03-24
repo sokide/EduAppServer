@@ -12,48 +12,30 @@ import uk.ac.abertay.eduapp.mock.Users;
  *
  */
 public class UserPojo {
-    private Long id;
-    private String email;
     private String firstName;
     private String lastName;
-    private String password;
+    private String userName;
     private String gender;
-    private String timeZone;
-    private String locale;
+    private String birthday;
+    private String email;
+    private String password;
     private String userRole;
-    private HashMap<String, String> customFields;
-    private BirthdayPojo birthday;
 
-	// private AddressPojo address;
 
     public UserPojo(){
 	
     }
     
 	public UserPojo(Users user, BirthdayPojo birthday) {
-	 this.id = user.getId();
 	 this.email = user.getEmail();
 	 this.firstName = user.getFirstName();
 	 this.lastName = user.getLastName();
-		this.gender = user.getGender();
-	 this.timeZone = user.getTimeZone();
-	 this.locale = user.getLocale();
+	 this.gender = user.getGender();
 	 this.userRole = user.getRoles().getAuthority();
 	 this.password = "*****";
-	 this.birthday = birthday;
-	 if( user.getAddress() != null){
-	 AddressPojo address = new AddressPojo(user.getAddress());
-			// this.address = address;
-	 }
-	 }
-
-    public Long getId() {
-	return id;
-    }
-
-    public void setId(Long id) {
-	this.id = id;
-    }
+	 
+	}
+	
     public String getEmail() {
 	return email;
     }
@@ -94,21 +76,6 @@ public class UserPojo {
 	this.gender = gender;
     }
 
-    public String getTimeZone() {
-	return timeZone;
-    }
-
-    public void setTimeZone(String timeZone) {
-	this.timeZone = timeZone;
-    }
-
-    public String getLocale() {
-	return locale;
-    }
-
-    public void setLocale(String locale) {
-	this.locale = locale;
-    }
 
     public String getUserRole() {
 	return userRole;
@@ -118,30 +85,22 @@ public class UserPojo {
 	this.userRole = userRole;
     }
 
-    public HashMap<String, String> getCustomFields() {
-	return customFields;
-    }
 
-    public void setCustomFields(HashMap<String, String> customFields) {
-	this.customFields = customFields;
-    }
+	public String getBirthday() {
+		return birthday;
+	}
 
-    public BirthdayPojo getBirthday() {
-	return birthday;
-    }
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
 
-    public void setBirthday(BirthdayPojo birthday) {
-	this.birthday = birthday;
-    }
-	//
-	// public AddressPojo getAddress() {
-	// return address;
-	// }
-	//
-	// public void setAddress(AddressPojo address) {
-	// this.address = address;
-	// }
+	public String getUserName() {
+		return userName;
+	}
 
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 
 

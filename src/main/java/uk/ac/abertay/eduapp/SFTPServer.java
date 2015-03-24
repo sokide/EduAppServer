@@ -1,6 +1,11 @@
 package uk.ac.abertay.eduapp;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +30,8 @@ public class SFTPServer {
 	private static final List<Authority> ADMIN_AUTHORITIES;
 	private static final int BYTES_PER_KB = 1024;
 	private static final String DEFAULT_USER_DIR = "C:\\EduAppCloud\\ftp_users\\";
-
+	private static final String DEFAULT_USER_FILES = "Your_EduApp_Files";
+	
 	public final static int MAX_CONCURRENT_LOGINS = 1;
 	public final static int MAX_CONCURRENT_LOGINS_PER_IP = 10;
 
@@ -64,7 +70,6 @@ public class SFTPServer {
 		mFTPServerFactory.setUserManager(mUserManager);
 
 		this.createAdminUser();
-		SFTPServer.addUser("tcnofoegbu", "blanker_01102014", 200, 200);
 
 		mFTPServer = mFTPServerFactory.createServer();
 
@@ -102,6 +107,19 @@ public class SFTPServer {
 			user.setPassword(password);
 			new File(DEFAULT_USER_DIR + username).mkdir();
 			user.setHomeDirectory(DEFAULT_USER_DIR + username);
+			
+			File userDir = new File(DEFAULT_USER_DIR + username);
+			userDir.setWritable(true);
+			userDir.setReadable(true);
+			
+			File newUserFiles  = new File(DEFAULT_USER_DIR + DEFAULT_USER_FILES);
+			try {
+				copyDirectory(newUserFiles, userDir);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			
 			user.setEnabled(true);
 
 			List<Authority> list = new ArrayList<Authority>();
@@ -117,6 +135,36 @@ public class SFTPServer {
 			System.out.println("--------------------> user already exists!!!");
 		}
 	}
+	
+	 // If targetLocation does not exist, it will be created.
+    public static void copyDirectory(File sourceLocation , File targetLocation)
+    throws IOException {
+        
+        if (sourceLocation.isDirectory()) {
+            if (!targetLocation.exists()) {
+                targetLocation.mkdir();
+            }
+            
+            String[] children = sourceLocation.list();
+            for (int i=0; i<children.length; i++) {
+                copyDirectory(new File(sourceLocation, children[i]),
+                        new File(targetLocation, children[i]));
+            }
+        } else {
+            
+            InputStream in = new FileInputStream(sourceLocation);
+            OutputStream out = new FileOutputStream(targetLocation);
+            
+            // Copy the bits from instream to outstream
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+            in.close();
+            out.close();
+        }
+    }
 
 	public static void restartFTP() throws FtpException {
 		if (mFTPServer != null) {

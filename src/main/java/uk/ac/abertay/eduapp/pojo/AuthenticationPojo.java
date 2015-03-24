@@ -8,19 +8,24 @@ package uk.ac.abertay.eduapp.pojo;
  *
  */
 public class AuthenticationPojo {
-    private String email;
+    private String username;
     private String password;
+    
+    public AuthenticationPojo(String username, String password){
+    	this.username = username;
+    	this.password = password;
+    }  
     
     public AuthenticationPojo(){
 	
     }
 
-    public String getEmail() {
-	return email;
+    public String getUsername() {
+	return username;
     }
 
-    public void setEmail(String email) {
-	this.email = email;
+    public void setUsername(String username) {
+	this.username = username;
     }
 
     public String getPassword() {

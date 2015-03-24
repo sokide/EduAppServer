@@ -21,10 +21,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+
+
 import uk.ac.abertay.eduapp.SFTPServer;
+import uk.ac.abertay.eduapp.common.ApplicationSecurityController;
 import uk.ac.abertay.eduapp.common.Constants;
 import uk.ac.abertay.eduapp.common.Util;
 import uk.ac.abertay.eduapp.mock.Users;
+import uk.ac.abertay.eduapp.pojo.AccessPojo;
+import uk.ac.abertay.eduapp.pojo.AuthenticationPojo;
+import uk.ac.abertay.eduapp.pojo.ExceptionPojo;
 import uk.ac.abertay.eduapp.pojo.UserPojo;
 
 /**
@@ -59,7 +65,7 @@ public class UserService {
 
 		Users user = new Users();
 		try {
-			SFTPServer.addUser(jsonUser.getEmail(), jsonUser.getPassword(), 200, 200);
+			SFTPServer.addUser(jsonUser.getUserName(), jsonUser.getPassword(), 200, 200);
 		} catch (FtpException e1) {
 			e1.printStackTrace();
 		}
@@ -96,14 +102,18 @@ public class UserService {
 //		user = (Users) DataAccessObject.createNewRecord(user);
 
 //		UserPojo userPojo = new UserPojo(user, jsonUser.getBirthday());
-		jsonUser.setPassword("*****");
-		try {
-			uri = new URI(Util.getContextPath(req) + "/" + Constants.APP_NAME + "/" + Constants.APP_VERSION + "/users/" + user.getId());
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
+		
+		
+    	AccessPojo accessPojo = ApplicationSecurityController.AuthenticateUser(jsonUser.getUserName(), jsonUser.getPassword());
+		if(accessPojo == null){
+		    return Response.status(Constants.HTTP_CODE.OK.getCode()).entity(new ExceptionPojo(Constants.HTTP_CODE.NOT_ACCEPTED, new String[]{"Authentication failed!"}, "Could not authenticate the user with the supplied credential.")).build();
 		}
-//		authorizationState = null;
-		return Response.status(Constants.HTTP_CODE.CREATED.getCode()).entity(jsonUser).location(uri).build();
+		String userAuth = accessPojo.getUserApiKey();
+		AccessControlService.getLoggedInUsers().put(userAuth, new AuthenticationPojo(jsonUser.getUserName(), jsonUser.getPassword()));
+				
+
+		return Response.status(Constants.HTTP_CODE.OK.getCode()).entity(accessPojo).build();
+		
 	}
 
 }
