@@ -1,0 +1,348 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Account"
+    },
+    "designerId": "281224ab-8461-4b2e-9888-353e3182bb15",
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "mainview #showRegisterButton",
+                "designer|targetType": "Ext.Button",
+                "fn": "showRegister",
+                "implHandler": [
+                    "",
+                    "var registerForm = Ext.create('widget.registerform'),\t// Registration form",
+                    "    mainView = this.getMainView();\t\t\t\t\t\t// Main view",
+                    "",
+                    "// Navigate to register",
+                    "mainView.push({",
+                    "    xtype: \"registerform\",",
+                    "    title: \"Register\"",
+                    "});",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "name": "showRegister",
+            "designerId": "25893cb2-9fca-4cb3-b457-2e12b9102711"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "mainview #showLoginButton",
+                "designer|targetType": "Ext.Button",
+                "fn": "showLogin",
+                "implHandler": [
+                    "\r",
+                    "var loginForm = Ext.create('widget.loginform'),\t// Login form\r",
+                    "    mainView = this.getMainView();\t\t\t\t// Main view\r",
+                    "\r",
+                    "// Navigate to login\r",
+                    "mainView.push({\r",
+                    "    xtype: \"loginform\",\r",
+                    "    title: \"Login\"\r",
+                    "});\r",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "name": "showLogin",
+            "designerId": "382eaa3d-63ef-45db-8f5d-639c2def90f4"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "loginform #loginButton",
+                "designer|targetType": "Ext.Button",
+                "fn": "login",
+                "implHandler": [
+                    "            var form = button.up('formpanel'),\t\t// Login form",
+                    "            values = form.getValues(),\t\t\t\t// Form values",
+                    "            mainView = this.getMainView(),\t\t\t// Main view",
+                    "            loginPanel = this.getLoginPanel(),\t\t// Login and register buttons",
+                    "            welcomePanel = this.getWelcomePanel();\t// Welcome panel",
+                    "\t\t\tdirs = this.getDirList();",
+                    "",
+                    "            // Success",
+                    "            var successCallback = function(res, req) {",
+                    "            var json = Ext.decode(res.responseText);",
+                    "            console.log('reponse :- ' + res.responseText);",
+                    "            if(json.statusCode == '200'){",
+                    "                localStorage.setItem('UserAuthorization', json.userApiKey);",
+                    "                loadDir();",
+                    "                // Go back",
+                    "                mainView.pop();",
+                    "",
+                    "                // Hide login panel",
+                    "                loginPanel.hide();",
+                    "",
+                    "                // Show welcome panel",
+                    "                welcomePanel.show();",
+                    "             }else{",
+                    "                 Ext.Msg.alert(\"Authentication failed!\\n\" + json.moreInfo);",
+                    "             }",
+                    "",
+                    "        };",
+                    "",
+                    "        // Failure",
+                    "        var failureCallback = function(resp, ops) {",
+                    "",
+                    "            // Show login failure error",
+                    "            Ext.Msg.alert(\"Login Failure\", resp);",
+                    "",
+                    "        };",
+                    "",
+                    "        function loadDir(){",
+                    "",
+                    "",
+                    "            var sto = Ext.create('EduApp.store.DirsStore');",
+                    "            var auth = localStorage.getItem('UserAuthorization');",
+                    "            console.log(\"user authorisation : \"+auth);",
+                    "            sto.load({",
+                    "                params:{",
+                    "                    userAuth:auth,",
+                    "                },",
+                    "                scope:this,",
+                    "                callback: function(records, operation, success){",
+                    "                    dirs.setStore(sto);",
+                    "                }",
+                    "            });",
+                    "        }",
+                    "",
+                    "        // Login using server-side authentication service",
+                    "        Ext.Ajax.request({",
+                    "            url: \"api-1.1/auth\",",
+                    "            method: 'POST',",
+                    "            params: Ext.util.JSON.encode(values),",
+                    "            headers:{",
+                    "                'Content-Type':'application/json',",
+                    "                'X-Application-Name':'add',",
+                    "            },",
+                    "           //callbackKey: 'callback',",
+                    "\t\t  success:  successCallback,",
+                    "          failure: failureCallback,",
+                    "        });"
+                ],
+                "name": "tap"
+            },
+            "name": "login",
+            "designerId": "613f385b-036d-4465-acb4-0d48731462d6"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "registerform #registerButton",
+                "designer|targetType": "Ext.Button",
+                "fn": "register",
+                "implHandler": [
+                    "",
+                    "var form = button.up('formpanel'),\t\t\t// Login form",
+                    "    values = form.getValues(),\t\t\t\t// Form values",
+                    "    mainView = this.getMainView(),\t\t\t// Main view",
+                    "    loginPanel = this.getLoginPanel(),\t\t// Login and register buttons",
+                    "    welcomePanel = this.getWelcomePanel(),\t// Welcome panel",
+                    "    dirs = this.getDirList();",
+                    "",
+                    "",
+                    "// Success",
+                    "var successCallback = function(res, req) {",
+                    "    // Success",
+                    "    var json = Ext.decode(res.responseText);",
+                    "    console.log('reponse :- ' + res.responseText);",
+                    "    if(json.statusCode == '200'){",
+                    "        localStorage.setItem('UserAuthorization', json.userApiKey);",
+                    "        loadDir();",
+                    "",
+                    "        // Go back",
+                    "        mainView.pop();",
+                    "",
+                    "        // Hide login panel",
+                    "        loginPanel.hide();",
+                    "",
+                    "        // Show welcome panel",
+                    "        welcomePanel.show();",
+                    "      }else{",
+                    "          Ext.Msg.alert(\"Registration failed!\\n\" + json.moreInfo);",
+                    "      }",
+                    "};",
+                    "",
+                    "",
+                    "// Failure",
+                    "var failureCallback = function(resp, ops) {",
+                    "",
+                    "    // Show login failure error",
+                    "    Ext.Msg.alert(\"Registration Failure\", resp);",
+                    "",
+                    "};",
+                    "",
+                    "",
+                    "function loadDir(){",
+                    "    var sto = Ext.create('EduApp.store.DirsStore');",
+                    "    var auth = localStorage.getItem('UserAuthorization');",
+                    "    console.log(\"user authorisation : \"+auth);",
+                    "    sto.load({",
+                    "        params:{",
+                    "            userAuth:auth,",
+                    "        },",
+                    "        scope:this,",
+                    "        callback: function(records, operation, success){",
+                    "            dirs.setStore(sto);",
+                    "            }",
+                    "        });",
+                    "    }",
+                    "",
+                    "// TODO: Register using server-side authentication service",
+                    "Ext.Ajax.request({",
+                    "\t\turl: \"api-1.1/users\",",
+                    "        method: 'POST',",
+                    "        params: Ext.util.JSON.encode(values),",
+                    "        headers:{",
+                    "            'Content-Type':'application/json',",
+                    "            'X-Application-Name':'add',",
+                    "        },",
+                    "\t\tsuccess: successCallback,",
+                    "\t\tfailure: failureCallback",
+                    "});",
+                    "",
+                    "// Just run success for now",
+                    "// successCallback();"
+                ],
+                "name": "tap"
+            },
+            "name": "register",
+            "designerId": "51e9db8a-f205-4d3a-a624-378ed18bf4f2"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "mainview #dirList",
+                "designer|targetType": "Ext.dataview.List",
+                "fn": "listSubDir",
+                "implHandler": [
+                    "var  dirs = this.getDirList();",
+                    "console.log(\"listSubDir tapped...\");",
+                    "var recorde = dataview.getStore().getAt(index);",
+                    "var file = record.get('name');",
+                    "",
+                    "var curDir =  record.get('currentDir');",
+                    "console.log('Selected item index : '+index);",
+                    "console.log('Selected item value: '+ file);",
+                    "",
+                    "            var auth = localStorage.getItem('UserAuthorization');",
+                    "",
+                    "                loadDir();",
+                    "",
+                    "",
+                    "        function loadDir(){",
+                    "            var sto = Ext.create('EduApp.store.DirsStore');",
+                    "            var auth = localStorage.getItem('UserAuthorization');",
+                    "            console.log(\"user authorisation : \"+auth);",
+                    "            sto.load({",
+                    "                params: {",
+                    "                    userAuth: auth,",
+                    "                    currentDir: curDir,",
+                    "                    file: file,",
+                    "                },",
+                    "                scope:this,",
+                    "                callback: function(records, operation, success){",
+                    "                    dirs.setStore(sto);",
+                    "                    }",
+                    "                });",
+                    "            }",
+                    ""
+                ],
+                "name": "itemtap"
+            },
+            "name": "listSubDir",
+            "designerId": "15efac66-c6c0-44a1-8bdc-486f9b4eca35"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "mainView",
+                "selector": "mainview"
+            },
+            "name": "mainView",
+            "designerId": "ed84a4c2-2097-4f3b-b1e3-607495319c7a"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "loginPanel",
+                "selector": "mainview #loginPanel"
+            },
+            "name": "loginPanel",
+            "designerId": "4bc740f2-2c6d-4ed4-bee3-fcfc264e0658"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "welcomePanel",
+                "selector": "mainview #welcomePanel"
+            },
+            "name": "welcomePanel",
+            "designerId": "fade38f6-e579-409b-b1a7-aa4af3c7c505"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "dirList",
+                "selector": "#dirList"
+            },
+            "name": "dirList",
+            "designerId": "1265c0d6-a509-4778-9361-eb5d199e5d17"
+        }
+    ]
+}

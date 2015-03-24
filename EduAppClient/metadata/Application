@@ -1,0 +1,39 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "baseURL": "http://192.168.0.6:7070/EduAppServer/api-1.1/",
+        "controllers": [
+            "Account"
+        ],
+        "models": [
+            "Dirs"
+        ],
+        "name": "EduApp",
+        "requires": [
+            "Ext.MessageBox"
+        ],
+        "stores": [
+            "DirsStore"
+        ],
+        "views": [
+            "MainView",
+            "LoginForm",
+            "RegisterForm",
+            "DirectoryBrowser"
+        ]
+    },
+    "name": "Application",
+    "designerId": "application",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "baseURL",
+            "type": "string"
+        }
+    ]
+}

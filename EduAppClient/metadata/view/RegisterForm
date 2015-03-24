@@ -1,0 +1,182 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "registerform",
+        "designer|userClassName": "RegisterForm"
+    },
+    "designerId": "62ee9761-4c3f-444d-9653-931250a2298a",
+    "cn": [
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "EduApp - Register User"
+            },
+            "name": "MyFieldSet1",
+            "designerId": "a78ce03a-f002-4ef5-ab08-d3c6000e7522",
+            "cn": [
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "First Name",
+                        "labelWidth": "40%",
+                        "name": "firstName",
+                        "required": true
+                    },
+                    "name": "MyTextField2",
+                    "designerId": "059d89ee-f844-4dbf-a6de-6bd8f01607f4"
+                },
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "Last Name",
+                        "labelWidth": "40%",
+                        "name": "lastName"
+                    },
+                    "name": "MyTextField1",
+                    "designerId": "7e48876f-44af-4012-8c9c-e606fdd297d6"
+                },
+                {
+                    "type": "Ext.field.DatePicker",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "Birthday",
+                        "labelWidth": "40%",
+                        "name": "birthday",
+                        "placeHolder": "mm/dd/yyyy"
+                    },
+                    "name": "MyDatePicker",
+                    "designerId": "3392d31c-3c65-40b3-b79e-6fd26366e230",
+                    "cn": [
+                        {
+                            "type": "Ext.picker.Date",
+                            "reference": {
+                                "name": "picker",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyDatePicker1",
+                            "designerId": "69b386bd-177a-4852-ac39-f15afa8cf3f4",
+                            "cn": [
+                                {
+                                    "type": "Ext.Button",
+                                    "reference": {
+                                        "name": "doneButton",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "text": "Done"
+                                    },
+                                    "name": "MyButton4",
+                                    "designerId": "2e28503b-3c98-4872-8fd2-0e9ef5b306c2"
+                                },
+                                {
+                                    "type": "Ext.Button",
+                                    "reference": {
+                                        "name": "cancelButton",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "text": "Cancel"
+                                    },
+                                    "name": "MyButton5",
+                                    "designerId": "bc4ea28a-a0f6-46d1-a471-26b18d5b04ef"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "Username",
+                        "labelWidth": "40%",
+                        "name": "userName",
+                        "required": true
+                    },
+                    "name": "MyTextField3",
+                    "designerId": "c591a084-a530-4821-ab87-aee228ea9664"
+                },
+                {
+                    "type": "Ext.field.Email",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "Email",
+                        "labelWidth": "40%",
+                        "name": "email",
+                        "placeHolder": "email@example.com",
+                        "required": true
+                    },
+                    "name": "MyEmailField",
+                    "designerId": "7df2a6ad-b721-4cb6-9bf8-386cbc94bab8"
+                },
+                {
+                    "type": "Ext.field.Password",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "label": "Password",
+                        "labelWidth": "40%",
+                        "name": "password",
+                        "required": true
+                    },
+                    "name": "MyPasswordField",
+                    "designerId": "01c51cad-9990-4229-a390-3fa6254ba4d9"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "registerButton",
+                "margin": 20,
+                "padding": 8,
+                "text": "Register"
+            },
+            "name": "MyButton3",
+            "designerId": "6af83342-ddc9-4a42-bf4a-fd989ba1b976"
+        }
+    ]
+}

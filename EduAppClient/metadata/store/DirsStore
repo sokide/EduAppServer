@@ -1,0 +1,42 @@
+{
+    "type": "jsonpstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "DirsStore",
+        "model": "Dirs",
+        "storeId": "DirsStore"
+    },
+    "name": "MyJsonPStore",
+    "designerId": "baf2a6d9-c2be-4036-afa3-5f9b0bd61960",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "api-1.1/dirs"
+            },
+            "name": "MyAjaxProxy",
+            "designerId": "ab8b6d17-5f8c-4d2b-b65a-8dee1fc0ee23",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "MyJsonReader",
+                    "designerId": "b3fd4382-7ccd-4034-ad91-8d63f39a5594"
+                }
+            ]
+        }
+    ]
+}

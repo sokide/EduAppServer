@@ -1,0 +1,102 @@
+{
+    "type": "Ext.navigation.View",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "directoryBrowser",
+        "designer|userClassName": "DirectoryBrowser"
+    },
+    "name": "MyNavigationView",
+    "designerId": "28439c6d-19ac-4e36-bd1e-2526a819dbb8",
+    "cn": [
+        {
+            "type": "Ext.tab.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "defaults": null,
+                "docked": "bottom"
+            },
+            "name": "MyTabPanel",
+            "designerId": "5f4ad340-20fa-4043-95e9-2ace6d79700d",
+            "cn": [
+                {
+                    "type": "Ext.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "defaults": null,
+                        "title": "Tab 1"
+                    },
+                    "name": "MyContainer",
+                    "designerId": "d561ca21-6670-45e6-98e9-752ed4f46cf5",
+                    "cn": [
+                        {
+                            "type": "Ext.dataview.List",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "name": "MyList1",
+                            "designerId": "461401b0-cdfc-4ac6-b44c-d3381f8c4d4f",
+                            "cn": [
+                                {
+                                    "type": "Ext.XTemplate",
+                                    "reference": {
+                                        "name": "itemTpl",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|displayName": "itemTpl",
+                                        "implHandler": [
+                                            "<div>List Item {string}</div>"
+                                        ]
+                                    },
+                                    "name": "itemTpl",
+                                    "designerId": "dcb7546d-b5bb-4946-bc07-f68f71bbbf3d"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "title": "Tab 2"
+                    },
+                    "name": "MyContainer1",
+                    "designerId": "ca1456c3-d3f0-40af-a282-cb29ae83afff"
+                },
+                {
+                    "type": "Ext.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "title": "Tab 3"
+                    },
+                    "name": "MyContainer2",
+                    "designerId": "a19b117f-d5cd-4bc4-bb80-4b94d7ddfe2d"
+                }
+            ]
+        }
+    ]
+}

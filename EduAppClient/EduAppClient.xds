@@ -1,0 +1,48 @@
+{
+    "name": "EduAppClient",
+    "settings": {
+        "cmd": {
+            "license": "commercial"
+        },
+        "canvasControls": {
+            "viewportSize": {
+                "name": "iPhone",
+                "builtIn": true,
+                "height": 480,
+                "width": 320
+            },
+            "viewportOrientation": "portrait"
+        },
+        "urlPrefix": "http://localhost/EduAppClient/",
+        "exportPath": ""
+    },
+    "xdsVersion": "3.2.0",
+    "xdsBuild": 75,
+    "schemaVersion": 1,
+    "upgradeVersion": 310000000001,
+    "framework": "touch24",
+    "viewOrderMap": {
+        "view": [
+            "ed028afd-d71b-4509-b56c-0ed684fd01e1",
+            "5f766276-5fd4-4afa-8cf9-aad3c3c41eee",
+            "62ee9761-4c3f-444d-9653-931250a2298a",
+            "28439c6d-19ac-4e36-bd1e-2526a819dbb8"
+        ],
+        "store": [
+            "baf2a6d9-c2be-4036-afa3-5f9b0bd61960"
+        ],
+        "controller": [
+            "281224ab-8461-4b2e-9888-353e3182bb15"
+        ],
+        "model": [
+            "d98bc63a-e07f-4e03-bdb7-3596ac70137f"
+        ],
+        "resource": [
+            "82da3b1e-2a17-4d60-972e-6d7d2cfca4d3",
+            "4ae9578d-2cc1-4011-bf06-bc6a8856755c"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}
