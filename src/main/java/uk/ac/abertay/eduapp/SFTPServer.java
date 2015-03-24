@@ -206,8 +206,5 @@ public class SFTPServer {
 	public void getUserByEmailAndPassword(String username, String password) {
 
 	}
-	// ===========================================================
-	// Inner and Anonymous Classes
-	// ===========================================================
-
+	
 }
